@@ -1,7 +1,7 @@
 library(ggplot2)
 library(dplyr)
 
-# read .csv
+# read .csv data
 country <- read.csv("../processed_data/country.csv", stringsAsFactors = FALSE)
 
 # See the number of countrie with different level of income
