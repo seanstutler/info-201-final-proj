@@ -5,16 +5,23 @@ library(dplyr)
 
 #read csv
 country_data <-
-  read.csv(file = "../origin_data/WDI_csv/WDICountry.csv",
+  read.csv(file = "../origin_data/WDICountry.csv",
            stringsAsFactors = FALSE)
+series_data <- read.csv(file = "../origin_data/WDICountry-Series.csv",
+                        stringsAsFactors = FALSE)
+#extract countries
+country <- series_data$CountryCode
 
-#processed and extract data
-country_data <- country_data %>%
-  filter(Region == "South Asia" | Region == "Europe & Central Asia" |
-           Region == "East Asia & Pacific") %>%
-  select(Country.Code, Short.Name, Region, Income.Group) %>%
-  arrange(Short.Name)
+#processed data
+region_data <- country_data %>%
+  filter(Country.Code %in% country) %>%
+  select(Country.Code, Short.Name, Region)
 
-#write a new csv file for future data processed
-write.csv(country_data, file = "../processed_data/country.csv",
+incomegroup_data <-  country_data %>%
+  filter(Country.Code %in% country) %>%
+  select(Country.Code, Short.Name, Income.Group)
+
+write.csv(country_data, file = "../processed_data/region.csv",
+          row.names = FALSE)
+write.csv(incomegroup_data, file = "../processed_data/income_group.csv",
           row.names = FALSE)
