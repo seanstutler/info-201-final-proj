@@ -21,6 +21,7 @@ incomegroup_data <-  country_data %>%
   filter(Country.Code %in% country) %>%
   select(Country.Code, Short.Name, Income.Group)
 
+#write data
 write.csv(country_data, file = "../processed_data/region.csv",
           row.names = FALSE)
 write.csv(incomegroup_data, file = "../processed_data/income_group.csv",
