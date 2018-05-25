@@ -19,6 +19,7 @@ region_data <- country_data %>%
 
 incomegroup_data <-  country_data %>%
   filter(Country.Code %in% country) %>%
+  filter(Income.Group != "") %>%
   select(Country.Code, Short.Name, Income.Group)
 
 #write data
