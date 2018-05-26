@@ -16,7 +16,9 @@ shinyUI(navbarPage(
                            label = "Choose Region",
                            choices = list("REGION 1" = "REGION NAME IN COL"))
              ),
-             mainPanel()
-
+             mainPanel(
+               plotOutput("scatter")
+             )
            )
   )
+))
