@@ -30,4 +30,4 @@ income <- process(data, income_list)
 
 income <- full_join(income, income_group, by = "Country.Code")
 
-write.csv(country, file = "../processed_data/income_indicators.csv", row.names = FALSE)
+write.csv(income, file = "../processed_data/income_indicators.csv", row.names = FALSE)
