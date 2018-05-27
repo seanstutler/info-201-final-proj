@@ -1,5 +1,5 @@
 library(plotly)
-source()
+data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
 # credit to https://plot.ly/r/choropleth-maps/
 l <- list(color = toRGB("grey"), width = 0.5)
 
@@ -13,7 +13,7 @@ g <- list(
 p <- plot_geo(df) %>%
   add_trace(
     z = ~GDP..BILLIONS., color = ~GDP..BILLIONS., colors = 'Blues',
-    text = ~COUNTRY, locations = ~CODE, marker = list(line = l)
+    text = ~COUNTRY, locations = ~Country.Code, marker = list(line = l)
   ) %>%
   colorbar(title = 'GDP Billions US$', tickprefix = '$') %>%
   layout(
