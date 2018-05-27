@@ -15,16 +15,20 @@ shinyUI(navbarPage(
                selectInput("type",
                            label = "Choose Indicator",
                            choices = list("Employment"
-                                        = "Employment to population ratio, 15+,
+                                          = "Employment to population ratio, 15+,
                                           total (%) (national estimate)",
-                                "Exports" =
-                                "Exports of goods and services (current US$)",
-                                "Imports" =
-                                "Imports of goods and services (current US$)",
-                                "Life Expectancy" =
-                                "Life expectancy at birth, total (years)",
-                                "Literacy" =
-                  "Literacy rate, adult total (% of people ages 15 and above")),
+                                          "Exports" =
+                                            "Exports of goods and services (current US$)",
+                                          "Imports" =
+                                            "Imports of goods and services (current US$)",
+                                          "Life Expectancy" =
+                                            "Life expectancy at birth, total (years)",
+                                          "Literacy" =
+                                            "Literacy rate, adult total (% of people ages 15 and above)",
+                                          "Total GDP" =
+                                            "GDP (current US$)",
+                                          "GDP Per Capita" =
+                                            "GDP per capita (current US$)")),
                selectInput("country",
                            label = "Choose Region",
                            choices = list("REGION 1" = "REGION NAME IN COL"))
