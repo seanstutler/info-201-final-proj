@@ -1,6 +1,9 @@
 library(dplyr)
-country_names <- read.csv(file = "../processed_data/region.csv", stringsAsFactors = FALSE)
-income_group <- read.csv(file = "../processed_data/income_group.csv", stringsAsFactors = FALSE)
+
+country_names <- read.csv(file = "../processed_data/region.csv",
+                          stringsAsFactors = FALSE)
+income_group <- read.csv(file = "../processed_data/income_group.csv",
+                         stringsAsFactors = FALSE)
 data <- read.csv(file = "../origin_data/WDIData.csv", stringsAsFactors = FALSE)
 country_names_list <- country_names$Country.Code
 income_list <- income_group$Country.Code
@@ -15,7 +18,8 @@ process <- function(data, list) {
                  Indicator.Name == "Exports of goods and services (current US$)" |
                  Indicator.Name == "Imports of goods and services (current US$)" |
                  Indicator.Name == "Life expectancy at birth, total (years)" |
-                 Indicator.Name == "Literacy rate, adult total (% of people ages 15 and above)") %>%
+                 Indicator.Name == "Literacy rate, adult total (% of people ages 15 and above)")
+  %>%
     filter(Country.Code %in% list)
 
   processed[is.na(processed)] <- "Not Available"
