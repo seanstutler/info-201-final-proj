@@ -18,7 +18,8 @@ process <- function(data, list) {
                  Indicator.Name == "Exports of goods and services (current US$)" |
                  Indicator.Name == "Imports of goods and services (current US$)" |
                  Indicator.Name == "Life expectancy at birth, total (years)" |
-                 Indicator.Name == "Literacy rate, adult total (% of people ages 15 and above)")
+                 Indicator.Name == "Literacy rate, adult total (% of people ages 15 and above)" |
+                 Indicator.Name == "GDP (current US$)")
   %>%
     filter(Country.Code %in% list)
 
