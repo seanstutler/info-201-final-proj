@@ -23,7 +23,7 @@ incomegroup_data <-  country_data %>%
   select(Country.Code, Short.Name, Income.Group)
 
 #write data
-write.csv(country_data, file = "../processed_data/region.csv",
+write.csv(region_data, file = "../processed_data/region.csv",
           row.names = FALSE)
 write.csv(incomegroup_data, file = "../processed_data/income_group.csv",
           row.names = FALSE)
