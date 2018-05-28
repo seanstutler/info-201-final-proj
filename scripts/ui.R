@@ -50,8 +50,8 @@ shinyUI(navbarPage(
                          "Low Income" = "Low income")),
                selectInput("country",
                            label = "Choose Country",
-                           choices = list("China" = "china",
-                           "Japan" = "japan")),
+                           choices = list("China" = "China",
+                           "Japan" = "Japan")),
               "If the hovered data of GDP is 0, then it means that the data currently
              is not available :)"
              ),
@@ -69,7 +69,9 @@ shinyUI(navbarPage(
              the trend of a certain developmemt indicators of a certain country by click. Also,
              the map we presented is colorized by 2016 total GDP."),
            h3("About our group"),
-           p("Our group ")
+           p("All of our group member are freshmen and from China. Clayton and Sean contribute to
+             the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
+             developer and data processer.")
 
 
   )
