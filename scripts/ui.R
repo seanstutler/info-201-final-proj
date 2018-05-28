@@ -1,8 +1,12 @@
 #load library
 library(shiny)
 library(ggplot2)
-#construct ui
 
+#read file
+df <- read.csv('../processed_data/country_indicators.csv',
+               stringsAsFactors = FALSE)
+
+#construct ui
 shinyUI(navbarPage(
   theme = "style.css",
   "Analysis of Country Development by Indicators",
@@ -44,6 +48,10 @@ shinyUI(navbarPage(
                          "Upper Middle Income" = "Upper middle income",
                          "Lower Middle Income" = "Lower middle income",
                          "Low Income" = "Low income")),
+               selectInput("country",
+                           label = "Choose Country",
+                           choices = list("China" = "china",
+                           "Japan" = "japan")),
               "If the hovered data of GDP is 0, then it means that the data currently
              is not available :)"
              ),

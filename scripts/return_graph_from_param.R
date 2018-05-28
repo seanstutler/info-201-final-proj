@@ -32,4 +32,5 @@ return_graph_from_param <- function(type, country) {
     write.csv(total_data, file = "output.csv", row.names = FALSE)
     total_data <- read.csv(file = "output.csv", stringsAsFactors = FALSE)
     graph <- plot_ly(total_data, x = ~Year, y = ~Amount, type = 'scatter', mode = 'lines')
+    return(graph)
 }
