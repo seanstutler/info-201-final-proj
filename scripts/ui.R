@@ -18,21 +18,21 @@ shinyUI(navbarPage(
              sidebarPanel(
                selectInput("type",
                          label = "Choose Indicator",
-                          choices = list("Employment"
-                                      = "Employment to population ratio, 15+,
-                                    total (%) (national estimate)",
+                          choices = list(
+    "Employment" =
+      "Employment to population ratio, 15+, total (%) (national estimate)",
                                   "Exports" =
-                                     "Exports of goods and services (current US$)",
-                                 "Imports" =
-                                       "Imports of goods and services (current US$)",
-                                     "Life Expectancy" =
-                                        "Life expectancy at birth, total (years)",
-                                     "Literacy" =
-                                      "Literacy rate, adult total (% of people ages 15 and above)",
-                                     "Total GDP" =
-                                         "GDP (current US$)",
-                                      "GDP Per Capita" =
-                                      "GDP per capita (current US$)")),
+                                "Exports of goods and services (current US$)",
+                                "Imports" =
+                                "Imports of goods and services (current US$)",
+                              "Life Expectancy" =
+                              "Life expectancy at birth, total (years)",
+                              "Literacy" =
+                  "Literacy rate, adult total (% of people ages 15 and above)",
+                              "Total GDP" =
+                              "GDP (current US$)",
+                              "GDP Per Capita" =
+                              "GDP per capita (current US$)")),
                selectInput("region",
                            label = "Choose Region",
                            choices = list("World" = "world",
@@ -50,9 +50,8 @@ shinyUI(navbarPage(
                          "Low Income" = "Low income")),
                selectInput("country",
                            label = "Choose Country",
-                           choices = list("China" = "China",
-                           "Japan" = "Japan")),
-              "If the hovered data of GDP is 0, then it means that the data currently
+                           choices = df$Country.Name),
+        "If the hovered data of GDP is 0, then it means that the data currently
              is not available :)"
              ),
              mainPanel(
