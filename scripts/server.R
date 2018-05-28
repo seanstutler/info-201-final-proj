@@ -10,7 +10,7 @@ df <- read.csv('../processed_data/country_indicators.csv',
 # Start the shiny server
 shinyServer(function(input, output) {
 
-output$map <- renderPlotly({
+  output$map <- renderPlotly({
     return(choose_region(df, input$region))
   })
 
