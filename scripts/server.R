@@ -15,7 +15,7 @@ shinyServer(function(input, output) {
 
   # Render a plotly scatter object
   output$scatter <- renderPlotly({
-    return(return_graph_from_param(df, input$type, input$country))
+    return(return_graph_from_param(input$type, input$country))
   })
 
 })
