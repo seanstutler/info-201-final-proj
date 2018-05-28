@@ -1,6 +1,6 @@
 library(dplyr)
 library(plotly)
-return_graph_from_param <- function(data, type, country) {
+return_graph_from_param <- function(type, country) {
     data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
     selected <- as.data.frame(data %>%
         filter(Indicator.Name == type, Country.Name == country))
@@ -32,4 +32,5 @@ return_graph_from_param <- function(data, type, country) {
     write.csv(total_data, file = "output.csv", row.names = FALSE)
     total_data <- read.csv(file = "output.csv", stringsAsFactors = FALSE)
     graph <- plot_ly(total_data, x = ~Year, y = ~Amount, type = 'scatter', mode = 'lines')
+    return(graph)
 }
