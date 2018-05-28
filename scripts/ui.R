@@ -48,7 +48,7 @@ shinyUI(navbarPage(
              #  is not available :)"
              ),
              mainPanel(
-               plotOutput("map")
+               plotlyOutput("map")
              )
           )
   ),
