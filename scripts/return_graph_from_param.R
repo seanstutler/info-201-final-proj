@@ -1,6 +1,6 @@
 library(dplyr)
 library(plotly)
-return_graph_from_param <- function(type, country) {
+return_graph_from_param <- function(data, type, country) {
     data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
     selected <- as.data.frame(data %>%
         filter(Indicator.Name == type, Country.Name == country))
