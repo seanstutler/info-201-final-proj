@@ -5,10 +5,10 @@ library(ggplot2)
 
 shinyUI(navbarPage(
   theme = "style.css",
-  "PUT Title HERE",
+  "Analysis of Country Development by Indicators",
   #tab 1
-  tabPanel("View Data by Region",
-           titlePanel("THIS IS THE TAB TITLE"),
+  tabPanel("Visualization",
+           titlePanel("Map of countries' GDP and plots by indicators"),
            #side bar
            sidebarLayout(
              sidebarPanel(
@@ -31,10 +31,24 @@ shinyUI(navbarPage(
                                             "GDP per capita (current US$)")),
                selectInput("country",
                            label = "Choose Region",
-                           choices = list("REGION 1" = "REGION NAME IN COL"))
+                           choices = list("World" = "world",
+                                          "Asia" = "asia",
+                                          "Africa" = "africa",
+                                          "South America" = "south america",
+                                         "North America" = "north america",
+                                         "Europe" = "europe"
+                              )),
+               selectInput("income group",
+                           label = "Choose Income Group",
+                           choices = list("High Income" = "High income",
+                            "Upper Middle Income" = "Upper middle income",
+                           "Lower Middle Income" = "Lower middle income",
+                           "Low Income" = "Low income")),
+               "If the hovered data of GDP is 0, then it means that the data currently
+               is not available :)"
              ),
              mainPanel(
-               plotOutput("scatter")
+               plotOutput("map")
              )
            )
   )
