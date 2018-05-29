@@ -9,13 +9,14 @@ df <- read.csv('../processed_data/country_indicators.csv',
 
 select_value <- df$Country.Name
 
+
 #construct ui
 shinyUI(navbarPage(
   theme = "style.css",
   "Analysis of Country Development by Indicators",
   #tab 1
-  tabPanel("Visualization",
-           titlePanel("Map of countries' GDP and plots by indicators"),
+  tabPanel("Interactive Map",
+           titlePanel("Magic Map of Development Indicators and Income Groups"),
            #side bar
            sidebarLayout(
              sidebarPanel(
@@ -51,19 +52,65 @@ shinyUI(navbarPage(
                          "Upper Middle Income" = "Upper middle income",
                          "Lower Middle Income" = "Lower middle income",
                          "Low Income" = "Low income")),
-               selectInput("country",
-                           label = "Choose Country",
-                           choice = select_value,
-                           selected = 1),
-        "If the hovered data of GDP is 0, then it means that the data currently
-             is not available :)"
+        "If the hovered data is 0, it means that that data currently
+             is not available :P Sorry for the inconvenience~"
              ),
              mainPanel(
-               plotlyOutput("map"),
-               plotlyOutput("scatter")
+               plotlyOutput("map")
              )
           )
   ),
+  tabPanel("Relation Plots",
+           titlePanel("Magic Plots of relations between certain indicators and one indicator's change in trend between
+                      contries"),
+           sidebarLayout(
+             sidebarPanel(
+               selectInput("type",
+                           label = "Development Indicator 1",
+                           choices =  list(
+                             "Employment" =
+                               "Employment to population ratio, 15+, total (%) (national estimate)",
+                             "Exports" =
+                               "Exports of goods and services (current US$)",
+                             "Imports" =
+                               "Imports of goods and services (current US$)",
+                             "Life Expectancy" =
+                               "Life expectancy at birth, total (years)",
+                             "Literacy" =
+                               "Literacy rate, adult total (% of people ages 15 and above)",
+                             "Total GDP" =
+                               "GDP (current US$)",
+                             "GDP Per Capita" =
+                               "GDP per capita (current US$)")),
+               selectInput("type2",
+                           label = "Development Indicator 2",
+                           choices =  list(
+                             "Employment" =
+                               "Employment to population ratio, 15+, total (%) (national estimate)",
+                             "Exports" =
+                               "Exports of goods and services (current US$)",
+                             "Imports" =
+                               "Imports of goods and services (current US$)",
+                             "Life Expectancy" =
+                               "Life expectancy at birth, total (years)",
+                             "Literacy" =
+                               "Literacy rate, adult total (% of people ages 15 and above)",
+                             "Total GDP" =
+                               "GDP (current US$)",
+                             "GDP Per Capita" =
+                               "GDP per capita (current US$)")),
+               selectInput("country2", label = "Choose Country ",
+                           choices = select_value,
+                           selected = 1
+                           )),
+             mainPanel(
+               plotOutput("scatter")
+             )
+           )
+  ),
+  tabPanel(""
+
+  )
   tabPanel("About us",
            h2("Introduction"),
            p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
