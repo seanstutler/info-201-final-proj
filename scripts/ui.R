@@ -1,6 +1,7 @@
 #load library
 library(shiny)
-library(ggplot2)
+library(plotly)
+
 
 #read file
 df <- read.csv('../processed_data/country_indicators.csv',
