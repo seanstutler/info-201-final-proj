@@ -60,12 +60,11 @@ shinyUI(navbarPage(
              )
           )
   ),
-  tabPanel("Relation Plots",
-           titlePanel("Magic Plots of relations between certain indicators and one indicator's change in trend between
-                      contries"),
+  tabPanel("Indicators Relation Plots",
+           titlePanel("Magic Plots of relations between certain indicators"),
            sidebarLayout(
              sidebarPanel(
-               selectInput("type",
+               selectInput("type1",
                            label = "Development Indicator 1",
                            choices =  list(
                              "Employment" =
@@ -108,9 +107,6 @@ shinyUI(navbarPage(
              )
            )
   ),
-  tabPanel(""
-
-  )
   tabPanel("About us",
            h2("Introduction"),
            p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
