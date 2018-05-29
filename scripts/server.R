@@ -1,5 +1,7 @@
 # Library
 library(shiny)
+library(plotly)
+library(ggplot2)
 
 # Read in data
 source('return_graph_from_param.R')
@@ -10,12 +12,22 @@ df <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFacto
 shinyServer(function(input, output) {
 
   output$map <- renderPlotly({
-    return(choose_region(df, input$region))
+    return(choose_region(df, input$region, input$`income group`))
   })
 
   # Render a plotly scatter object
   output$scatter <- renderPlotly({
     return(return_graph_from_param(input$type, input$country))
+  })
+
+  output$compare <- renderPlot({
+    y <- df[[input$indicator]]
+  })
+
+output$countryAvailable <- reactive({
+  mdf <- df %<%
+  filter(Region == input$region)
+   return(mdf)
   })
 
 })
