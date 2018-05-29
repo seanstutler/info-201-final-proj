@@ -47,7 +47,7 @@ shinyUI(navbarPage(
                               )),
                selectInput("income group",
                           label = "Choose Income Group",
-                         choices = list(" " = " ", "High Income" = "High income",
+                         choices = list("General" = "General", "High Income" = "High income",
                          "Upper Middle Income" = "Upper middle income",
                          "Lower Middle Income" = "Lower middle income",
                          "Low Income" = "Low income")),
