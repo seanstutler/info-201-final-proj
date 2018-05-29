@@ -54,7 +54,7 @@ shinyUI(navbarPage(
                selectInput("country",
                            label = "Choose Country",
                            choice = select_value,
-                           selected = 1),
+                           selected = 2),
         "If the hovered data of GDP is 0, then it means that the data currently
              is not available :)"
              ),
