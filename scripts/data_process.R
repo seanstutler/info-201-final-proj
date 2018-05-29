@@ -6,9 +6,8 @@ income_group <- read.csv(file = "../processed_data/income_group.csv",
                          stringsAsFactors = FALSE)
 data <- read.csv(file = "../origin_data/WDIData.csv", stringsAsFactors = FALSE)
 country_names_list <- country_names$Country.Code
-income_list <- income_group$Country.Code
 income_type <- income_group %>%
-    select(Income.Group)
+    select(Income.Group, Country.Code)
 
 
 process <- function(data, list) {
@@ -22,16 +21,13 @@ process <- function(data, list) {
                  Indicator.Name == "GDP (current US$)") %>%
     filter(Country.Code %in% list)
 
-  processed[is.na(processed)] <- 0
   return(processed)
 }
 
 country <- process(data, country_names_list)
 
+country <- full_join(country, income_type, by = "Country.Code")
+
+country[is.na(country)] <- 0
+
 write.csv(country, file = "../processed_data/country_indicators.csv", row.names = FALSE)
-
-income <- process(data, income_list)
-
-income <- full_join(income, income_group, by = "Country.Code")
-
-write.csv(income, file = "../processed_data/income_indicators.csv", row.names = FALSE)
