@@ -118,7 +118,5 @@ shinyUI(navbarPage(
            p("All of our group member are freshmen and from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
              developer and data processer.")
-
-
   )
 ))
