@@ -29,8 +29,8 @@ return_graph_from_param <- function(type, country) {
         i = i + 1
     }
     total_data <- do.call(rbind, Map(data.frame, Year = year_list, Amount = data_list))
-    write.csv(total_data, file = "output.csv", row.names = FALSE)
-    total_data <- read.csv(file = "output.csv", stringsAsFactors = FALSE)
+    write.csv(total_data, file = "../scripts/output.csv", row.names = FALSE)
+    total_data <- read.csv(file = "../scripts/output.csv", stringsAsFactors = FALSE)
     graph <- plot_ly(total_data, x = ~Year, y = ~Amount, type = 'scatter', mode = 'lines')
     return(graph)
 }

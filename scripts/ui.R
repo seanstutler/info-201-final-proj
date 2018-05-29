@@ -6,6 +6,8 @@ library(ggplot2)
 df <- read.csv('../processed_data/country_indicators.csv',
                stringsAsFactors = FALSE)
 
+select_value <- df$Country.Name
+
 #construct ui
 shinyUI(navbarPage(
   theme = "style.css",
@@ -50,7 +52,8 @@ shinyUI(navbarPage(
                          "Low Income" = "Low income")),
                selectInput("country",
                            label = "Choose Country",
-                           choices = df$Country.Name),
+                           choice = select_value,
+                           selected = 1),
         "If the hovered data of GDP is 0, then it means that the data currently
              is not available :)"
              ),
