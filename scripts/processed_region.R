@@ -14,9 +14,9 @@ country <- series_data$CountryCode
 
 #processed data
 region_data <- country_data %>%
-  filter(Country.Code %in% country && Country.Code == "WLD") %>%
+  filter(Country.Code %in% country | Country.Code == "WLD" ) %>%
   select(Country.Code, Short.Name, Region) %>%
-  filter(Region != "")
+  filter(Region != "" | Country.Code == "WLD")
 
 incomegroup_data <-  country_data %>%
   filter(Country.Code %in% country) %>%
