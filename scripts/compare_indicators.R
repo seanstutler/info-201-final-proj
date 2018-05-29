@@ -17,6 +17,44 @@ compare_indicators <- function(type, type2, country) {
     return(graph)
 }
 
+compare_country <- function(type, country) {
+    selected <- as.data.frame(data %>%
+                                  filter(Indicator.Name == type, Country.Name == country))
+    col_names <- colnames(selected)
+    year_list <- list()
+    i = 1
+    for (col in col_names) {
+        if (col != "Country.Name" & col!= "Country.Code" &
+            col != "Indicator.Name" & col != "Indicator.Code" &
+            col != "X" & col != "X2017" & col != "Income.Group") {
+                year_list[[i]] = col
+                i = i + 1
+            }
+    }
+    data_list = list();
+    i = 1
+    for (year in year_list) {
+        specific_year_data <- selected %>%
+            select(year)
+        if (specific_year_data == "Not Available") {
+            specific_year_data <- 0;
+        } else {
+            specific_year_data <- specific_year_data[1, 1]
+        }
+        data_list[[i]] = specific_year_data
+        i = i + 1
+    }
+    i <- 1
+
+    total_data <- do.call(rbind, Map(data.frame, Year = year_list, Amount = data_list))
+    graph <- ggplot(data = total_data) +
+        geom_line(mapping = aes(x = Year, y = Amount, group = 1)) +
+        theme(axis.title.x=element_blank(),
+              axis.text.x=element_blank(),
+              axis.ticks.x=element_blank())
+    return(graph)
+}
+
 
 return_list <- function(data) {
     datalist <- list();
