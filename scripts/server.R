@@ -24,10 +24,4 @@ shinyServer(function(input, output) {
     y <- df[[input$indicator]]
   })
 
-output$countryAvailable <- reactive({
-  mdf <- df %<%
-  filter(Region == input$region)
-   return(mdf)
-  })
-
 })
