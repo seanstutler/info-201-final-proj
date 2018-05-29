@@ -3,7 +3,7 @@ library(plotly)
 compare_indicators <- function(type, type2, country) {
     data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
     selected <- data %>%
-        filter(Country.Name == "China")
+        filter(Country.Name == country)
     data1 <- selected %>%
         filter(Indicator.Name == type)
     data2 <- selected %>%
@@ -25,7 +25,7 @@ return_list <- function(data) {
     for (col in colnames) {
         if (col != "Country.Name" & col!= "Country.Code" &
             col != "Indicator.Name" & col != "Indicator.Code" &
-            col != "X" & col != "X2017") {
+            col != "X" & col != "X2017" & col != "Income.Group") {
             datalist[[i]] <- data[1, col]
             i = i + 1
         }
