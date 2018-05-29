@@ -1,8 +1,8 @@
 library(dplyr)
 library(plotly)
-return_graph_from_param <- function(type, country, is_year, type2) {
+return_graph_from_param <- function(type, country, type2) {
     data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
-    if (is_year) {
+    if (is.null(type2) || type2 == "" || is.na(type2)) {
         selected <- as.data.frame(data %>%
             filter(Indicator.Name == type, Country.Name == country))
         col_names <- colnames(selected)
