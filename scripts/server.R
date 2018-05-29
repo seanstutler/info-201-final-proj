@@ -1,6 +1,7 @@
 # Library
 library(shiny)
 library(plotly)
+library(ggplot2)
 
 # Read in data
 source('return_graph_from_param.R')
@@ -17,6 +18,16 @@ shinyServer(function(input, output) {
   # Render a plotly scatter object
   output$scatter <- renderPlotly({
     return(return_graph_from_param(input$type, input$country))
+  })
+
+  output$compare <- renderPlot({
+    y <- df[[input$indicator]]
+  })
+
+  output$countryAvailable <- reactive({
+    mdf <- df %<%
+      filter(Region == input$region)
+    return()
   })
 
 })
