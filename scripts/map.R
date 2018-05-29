@@ -2,7 +2,7 @@ library(plotly)
 country_data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
 # credit to https://plot.ly/r/choropleth-maps/
 
-choose_region <- function(data, region, selector) {
+choose_region <- function(data, region, selector, indicator) {
   if (selector != "General") {
     data[data$Income.Group != selector, ]$Income.Group <- 0
     data[data$Income.Group == selector, ]$Income.Group <- 1
@@ -17,11 +17,8 @@ choose_region <- function(data, region, selector) {
     projection = list(type = "natural earth")
   )
 
-  gdp <- data[data$Indicator.Name == "GDP (current US$)", ]
-  gdp$X2016 <- gdp$X2016 / 1000000000
-
   if (selector != "General") {
-    p <- plot_geo(gdp) %>%
+    p <- plot_geo(data) %>%
       add_trace(
         z = ~Income.Group, color = ~Income.Group,
         text = ~Country.Name, locations = ~Country.Code, marker = list(line = l)
@@ -32,12 +29,22 @@ choose_region <- function(data, region, selector) {
       ) %>%
       hide_colorbar()
   } else {
-    p <- plot_geo(gdp) %>%
+    if (indicator == "GDP (current US$)") {
+      frame <- data[data$Indicator.Name == "GDP (current US$)", ]
+      frame$X2016 <- frame$X2016 / 1000000000
+    } else if (indicator == "GDP per capita (current US$)") {
+      frame <- data[data$Indicator.Name == "GDP per capita (current US$)", ]
+      frame$X2016 <- frame$X2016 / 1000000000
+    } else {
+      frame <- data[data$Indicator.Name == indicator, ]
+    }
+
+    p <- plot_geo(frame) %>%
       add_trace(
-        z = ~X2016, color = ~X2016, colors = 'Greens',
+        z = ~X2015, color = ~X2015, colors = 'Greens',
         text = ~Country.Name, locations = ~Country.Code, marker = list(line = l)
       ) %>%
-      colorbar(title = 'GDP Billions US$ (2016)', tickprefix = '$') %>%
+      colorbar(title = indicator) %>%
       layout(
         title = "World Map",
         geo = g
@@ -46,3 +53,5 @@ choose_region <- function(data, region, selector) {
   return(p)
 
 }
+
+choose_region(country_data, "world", "General", "GDP (current US$)")
