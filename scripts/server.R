@@ -1,5 +1,6 @@
 # Library
 library(shiny)
+library(plotly)
 
 # Read in data
 source('return_graph_from_param.R')
