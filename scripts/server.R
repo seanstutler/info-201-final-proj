@@ -11,7 +11,7 @@ df <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFacto
 shinyServer(function(input, output) {
 
   output$map <- renderPlotly({
-    return(choose_region(df, input$region))
+    return(choose_region(df, input$region, input$`income group`))
   })
 
   # Render a plotly scatter object
