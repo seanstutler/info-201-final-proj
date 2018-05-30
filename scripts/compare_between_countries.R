@@ -7,7 +7,7 @@ library(dplyr)
 # name is the list of the country
 compare_between_countries <- function(indicator, name) {
   df <- read.csv(
-    file = "../processed_data/country_indicators.csv",
+    file = "./processed_data/country_indicators.csv",
     stringsAsFactors = FALSE
   )
   year_list <- df %>%

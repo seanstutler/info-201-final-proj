@@ -1,6 +1,6 @@
 library(plotly)
 country_data <- read.csv(
-  file = "../processed_data/country_indicators.csv",
+  file = "./processed_data/country_indicators.csv",
   stringsAsFactors = FALSE
 )
 # credit to https://plot.ly/r/choropleth-maps/

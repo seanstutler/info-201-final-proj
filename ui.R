@@ -6,12 +6,12 @@ library(DT)
 library(dplyr)
 
 #read file
-data <- read.csv("../processed_data/country_indicators.csv",
+data <- read.csv("./processed_data/country_indicators.csv",
                stringsAsFactors = FALSE)
 data <- data %>%
   select(-X)
 
-region <- read.csv(file = "../processed_data/region.csv",
+region <- read.csv(file = "./processed_data/region.csv",
                    stringsAsFactors = FALSE)
 
 select_value <- data$Country.Name

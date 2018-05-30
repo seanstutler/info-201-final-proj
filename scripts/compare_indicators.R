@@ -1,11 +1,11 @@
 library(ggplot2)
 library(plotly)
 # This function takes in a type, a type2 and a country as parameters
-# Each type represents the indicator name 
-# returns a graph shows the corelatoin between the two indicators 
+# Each type represents the indicator name
+# returns a graph shows the corelatoin between the two indicators
 # in the given country
 compare_indicators <- function(type, type2, country) {
-    data <- read.csv(file = "../processed_data/country_indicators.csv",
+    data <- read.csv(file = "./processed_data/country_indicators.csv",
                      stringsAsFactors = FALSE)
     selected <- data %>%
         filter(Country.Name == country)

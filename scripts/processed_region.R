@@ -6,11 +6,11 @@ library(dplyr)
 # read csv
 country_data <-
   read.csv(
-    file = "../origin_data/WDICountry.csv",
+    file = "./origin_data/WDICountry.csv",
     stringsAsFactors = FALSE
   )
 series_data <- read.csv(
-  file = "../origin_data/WDICountry-Series.csv",
+  file = "./origin_data/WDICountry-Series.csv",
   stringsAsFactors = FALSE
 )
 # extract countries
@@ -27,20 +27,8 @@ incomegroup_data <- country_data %>%
   filter(Income.Group != "") %>%
   select(Country.Code, Short.Name, Income.Group)
 
-<<<<<<< HEAD
-# write data
-write.csv(region_data,
-  file = "../processed_data/region.csv",
-  row.names = FALSE
-)
-write.csv(incomegroup_data,
-  file = "../processed_data/income_group.csv",
-  row.names = FALSE
-)
-=======
 #write data into csv files
-write.csv(region_data, file = "../processed_data/region.csv",
+write.csv(region_data, file = "./processed_data/region.csv",
           row.names = FALSE)
-write.csv(incomegroup_data, file = "../processed_data/income_group.csv",
+write.csv(incomegroup_data, file = "./processed_data/income_group.csv",
           row.names = FALSE)
->>>>>>> 870b1fd8cafb6913855a3f654b8ed08786d09485

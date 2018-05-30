@@ -6,14 +6,14 @@ library(DT)
 library(dplyr)
 
 # Read in data
-source("compare_indicators.R")
-source("map.R")
-source("compare_between_countries.R")
+source("./scripts/compare_indicators.R")
+source("./scripts/map.R")
+source("./scripts/compare_between_countries.R")
 
-data <- read.csv(file = "../processed_data/country_indicators.csv",
+data <- read.csv(file = "./processed_data/country_indicators.csv",
                stringsAsFactors = FALSE)
 
-region <- read.csv(file = "../processed_data/region.csv",
+region <- read.csv(file = "./processed_data/region.csv",
                stringsAsFactors = FALSE)
 
 data <- data %>%

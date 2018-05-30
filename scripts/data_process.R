@@ -1,10 +1,10 @@
 library(dplyr)
 
-country_names <- read.csv(file = "../processed_data/region.csv",
+country_names <- read.csv(file = "./processed_data/region.csv",
                           stringsAsFactors = FALSE)
-income_group <- read.csv(file = "../processed_data/income_group.csv",
+income_group <- read.csv(file = "./processed_data/income_group.csv",
                          stringsAsFactors = FALSE)
-data <- read.csv(file = "../origin_data/WDIData.csv", stringsAsFactors = FALSE)
+data <- read.csv(file = "./origin_data/WDIData.csv", stringsAsFactors = FALSE)
 country_names_list <- country_names$Country.Code
 income_type <- income_group %>%
     select(Income.Group, Country.Code)
@@ -32,5 +32,5 @@ country <- full_join(country, income_type, by = "Country.Code")
 
 country[is.na(country)] <- 0
 
-write.csv(country, file = "../processed_data/country_indicators.csv",
+write.csv(country, file = "./processed_data/country_indicators.csv",
           row.names = FALSE)
