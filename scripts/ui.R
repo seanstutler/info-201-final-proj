@@ -55,7 +55,7 @@ shinyUI(navbarPage(
              is not available :P Sorry for the inconvenience~"
              ),
              mainPanel(
-               h3("How to use the map"),
+               h3("Using "),
                p("Feel free to change any of the development indicators and region to see the visualization
                  of the data! Countries are classified by different indicator into different colors. Also,
                  if you want to know the income group of each country, change the income group input to see
@@ -107,7 +107,7 @@ shinyUI(navbarPage(
                            selected = 1
                            )),
              mainPanel(
-               h3("How to eat(use) the plot"),
+               h3("How to use the plot"),
                p("To see the relationship between two indicators of a certain region/country,
                  change the x-variable and y-variable, and choose the corresponding country/
                  region. Enjoy! "),
@@ -115,6 +115,41 @@ shinyUI(navbarPage(
              )
            )
   ),
+  tabPanel(
+    "Country relation",
+    titlePanel("Magic Plot To Compare Two Countries Development"),
+    sidebarLayout(
+      sidebarPanel(
+        # choose y
+        selectInput(
+          "indicator", "Choose the Indicator",
+          choices = list(
+            "Employment" =
+              "Employment to population ratio, 15+, total (%) (national estimate)",
+            "Exports" =
+              "Exports of goods and services (current US$)",
+            "Imports" =
+              "Imports of goods and services (current US$)",
+            "Life Expectancy" =
+              "Life expectancy at birth, total (years)",
+            "Literacy" =
+              "Literacy rate, adult total (% of people ages 15 and above)",
+            "Total GDP" =
+              "GDP (current US$)",
+            "GDP Per Capita" =
+              "GDP per capita (current US$)")),
+        # chooose country
+        selectInput(
+          "name", "Choose the Country",
+          choices = select_value,
+          multiple = TRUE)
+      ),
+      mainPanel(
+        h3("how to use this plot"),
+        p("To compare "),
+        plotlyOutput("compare")
+      )
+    )),
   tabPanel("About us",
            mainPanel(
              tabsetPanel(
@@ -134,3 +169,4 @@ shinyUI(navbarPage(
            )
   )
 ))
+
