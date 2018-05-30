@@ -3,11 +3,9 @@ library(ggplot2)
 library(dplyr)
 
 compare_between_countries <- function(indicator, name) {
-  df <- read.csv(file = "../processed_data/country_indicators.csv",
-                 stringsAsFactors = FALSE)
+  df <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
   year_list <- df %>%
-    select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code,
-           -X2017, -X, -Income.Group) %>%
+    select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code, -X2017, -X, -Income.Group) %>%
     colnames()
 
   year_list <- gsub("X", "", year_list)
@@ -20,8 +18,7 @@ compare_between_countries <- function(indicator, name) {
     df_trend <- df %>%
       filter(Indicator.Name == indicator) %>%
       filter(Country.Name %in% name) %>%
-      select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code,
-             -X, -X2017, -Income.Group)
+      select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code, -X, -X2017, -Income.Group)
 
     length <- length(name)
     frame <- data.frame()
@@ -31,7 +28,7 @@ compare_between_countries <- function(indicator, name) {
       j <- 1
       for (col in colnames) {
           datalist[[j]] <- df_trend[i, col]
-          j <- j + 1
+          j = j + 1
         }
       new <- do.call(rbind, Map(data.frame, Year = year_list, value = datalist))
       new$Country <- name[[i]]
@@ -40,8 +37,7 @@ compare_between_countries <- function(indicator, name) {
 
     title <- paste0("Year VS ", indicator)
 
-    gg <- ggplot(data = frame, aes(x = Year, y = value, group = Country,
-                                   colour = Country)) + geom_line() +
+    gg <- ggplot(data = frame, aes(x = Year, y = value, group = Country, colour = Country)) + geom_line() +
       theme(axis.text.x = element_blank(),
             axis.ticks.x = element_blank()) +
       ggtitle(title) +

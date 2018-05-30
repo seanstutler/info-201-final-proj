@@ -1,12 +1,18 @@
 #load library
 library(shiny)
 library(plotly)
-
+library(ggplot2)
+library(DT)
+library(dplyr)
 
 #read file
-df <- read.csv("../processed_data/country_indicators.csv",
+data <- read.csv("../processed_data/country_indicators.csv",
                stringsAsFactors = FALSE)
-select_value <- df$Country.Name
+data <- data %>%
+  select(-X)
+
+select_value <- data$Country.Name
+
 indicator_choice <- list(
   "Employment" =
     "Employment to population ratio, 15+, total (%) (national estimate)",
@@ -120,6 +126,24 @@ shinyUI(navbarPage(
         plotlyOutput("compare")
       )
     )),
+  tabPanel("Data Table",
+    sidebarLayout(
+      sidebarPanel(
+        conditionalPanel(
+          'input.dataset === "data"',
+          checkboxGroupInput("show_vars", "Column choice:",
+                             names(data),
+                             selected = c('Country.Name', 'Indicator.Name', 'Income.Group'))
+        )
+      ),
+      mainPanel(
+        tabsetPanel(
+           id = 'dataset',
+           tabPanel("data", DT::dataTableOutput("myTable"))
+        )
+      )
+    )
+  ),
   tabPanel("About Us",
            mainPanel(
              tabsetPanel(
