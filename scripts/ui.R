@@ -131,10 +131,11 @@ shinyUI(navbarPage(
       sidebarPanel(
         conditionalPanel(
           'input.dataset === "data"',
-          checkboxGroupInput("show_vars", "Column choice:",
+          checkboxGroupInput("show_vars", label = "Column choice:",
                              names(data),
-                             selected = c('Country.Name', 'Indicator.Name', 'Income.Group'))
-        )
+                             selected = c('Country.Name', 'Indicator.Name',
+                                          'Income.Group'))
+        ), width = 2
       ),
       mainPanel(
         tabsetPanel(
