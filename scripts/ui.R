@@ -187,7 +187,7 @@ shinyUI(navbarPage(
                   a(href =
       "https://datacatalog.worldbank.org/dataset/world-development-indicators",
       "World Bank Group"), "and here is the link to our ",
-      a(href = "https://github.com/velocityCavalry/info-201-final-proj", "repo"))),
+  a(href = "https://github.com/velocityCavalry/info-201-final-proj", "repo"))),
                tabPanel("Insights of this project",
                         p("To be honest, the data we chose is itself a major
                           challenge of our team. The data takes up 210 MB and
