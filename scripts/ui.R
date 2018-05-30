@@ -56,6 +56,11 @@ shinyUI(navbarPage(
              is not available :P Sorry for the inconvenience~"
              ),
              mainPanel(
+               h3("How to use the map"),
+               p("Feel free to change any of the development indicators and region to see the visualization
+                 of the data! Countries are classified by different indicator into different colors. Also,
+                 if you want to know the income group of each country, change the income group input to see
+                 the highlighted map as well! Enjoy! "),
                plotlyOutput("map")
              )
           )
@@ -65,7 +70,7 @@ shinyUI(navbarPage(
            sidebarLayout(
              sidebarPanel(
                selectInput("type1",
-                           label = "Development Indicator 1",
+                           label = "Development Indicator (x axis)",
                            choices =  list(
                              "Employment" =
                                "Employment to population ratio, 15+, total (%) (national estimate)",
@@ -82,7 +87,7 @@ shinyUI(navbarPage(
                              "GDP Per Capita" =
                                "GDP per capita (current US$)")),
                selectInput("type2",
-                           label = "Development Indicator 2",
+                           label = "Development Indicator (y axis)",
                            choices =  list(
                              "Employment" =
                                "Employment to population ratio, 15+, total (%) (national estimate)",
@@ -103,22 +108,30 @@ shinyUI(navbarPage(
                            selected = 1
                            )),
              mainPanel(
+               h3("How to eat(use) the plot"),
+               p("To see the relationship between two indicators of a certain region/country,
+                 change the x-variable and y-variable, and choose the corresponding country/
+                 region. Enjoy! "),
                plotOutput("scatter")
              )
            )
   ),
   tabPanel("About us",
-           h2("Introduction"),
-           p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
+           mainPanel(
+             tabsetPanel(
+               tabPanel("Introduction",
+                p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
              by Clayton Chen, Sean Yang, Jessie Yang and Velocity Yu from INFO 201 BA. We are
-             proud to bring you guys this great interactive program that allows users to view
-             the trend of a certain developmemt indicators of a certain country by click. Also,
-             the map we presented is colorized by 2016 total GDP."),
-           h3("About our group"),
-           p("All of our group member are freshmen and from China. Clayton and Sean contribute to
+                                          proud to bring you guys this great interactive program that allows users to view
+                                          the trend of a certain developmemt indicators of a certain country by click. Also,
+                                          the map we presented is colorized by 2016 total GDP.")),
+               tabPanel("Insights of this project",
+                        p("xx some words' of ...")),
+               tabPanel("About Our Group",
+              p("All of our group member are freshmen and from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
-             developer and data processer.")
-
-
+                                             developer and data processer."))
+             )
+           )
   )
 ))

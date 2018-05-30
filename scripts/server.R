@@ -17,7 +17,7 @@ shinyServer(function(input, output) {
 
   # Render a plotly scatter object
   output$scatter <- renderPlot({
-    return(compare_indicators(input$type1, input$type2, input$country))
+    return(compare_indicators(input$type1, input$type2, input$country2))
   })
 
   output$compare <- renderPlot({
