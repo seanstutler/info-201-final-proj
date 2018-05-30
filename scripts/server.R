@@ -20,8 +20,8 @@ shinyServer(function(input, output) {
     return(compare_indicators(input$type1, input$type2, input$country2))
   })
 
-  output$compare <- renderPlot({
-    y <- df[[input$indicator]]
+  output$compare <- renderPlotly({
+    return(compare_between_countries(input$indicator, input$name))
   })
 
 })
