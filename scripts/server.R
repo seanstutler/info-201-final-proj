@@ -6,6 +6,7 @@ library(ggplot2)
 # Read in data
 source('compare_indicators.R')
 source('map.R')
+source('compare_between_countries.R')
 df <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
 
 # Start the shiny server
