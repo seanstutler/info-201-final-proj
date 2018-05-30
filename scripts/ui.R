@@ -140,12 +140,13 @@ shinyUI(navbarPage(
       mainPanel(
         tabsetPanel(
            id = 'dataset',
-           tabPanel("data", DT::dataTableOutput("myTable")),
-           tabPanel("Data Table Instruction",
-          p("This is a table of our processed data. You can choose from the
-              sidebar of what data you want to include in the table. To find a
-              data for a certain country/region, use the", strong("search: "),
-              "function at the right."))
+           tabPanel("data",
+                    h3("Data Table Instruction"),
+                       p("This is a table of our processed data. You can choose from the
+                         sidebar of what data you want to include in the table. To find a
+                         data for a certain country/region, use the", strong("search: "),
+                         "function at the right."),
+                       DT::dataTableOutput("myTable"))
       )))),
   tabPanel("About Us",
            mainPanel(
