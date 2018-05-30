@@ -44,6 +44,3 @@ compare_between_countries <- function(indicator, name) {
     return(gg)
   }
 }
-
-
-compare_between_countries("GDP (current US$)", list("China", "Japan", "Italy"))
