@@ -1,5 +1,6 @@
 library(plotly)
-country_data <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
+country_data <- read.csv(file = "../processed_data/country_indicators.csv",
+                         stringsAsFactors = FALSE)
 # credit to https://plot.ly/r/choropleth-maps/
 
 choose_region <- function(data, region, selector, indicator) {
@@ -37,14 +38,15 @@ choose_region <- function(data, region, selector, indicator) {
       frame$X2016 <- frame$X2016 / 1000000000
     } else {
       frame <- data[data$Indicator.Name == indicator, ]
-      if (indicator == "Employment to population ratio, 15+, total (%) (national estimate)") {
+      if (indicator ==
+          "Employment to population ratio, 15+, total (%) (national estimate)"){
         name <- "Employment/Population"
       }
     }
 
     p <- plot_geo(frame) %>%
       add_trace(
-        z = ~X2015, color = ~X2015, colors = 'Greens',
+        z = ~X2015, color = ~X2015, colors = "Greens",
         text = ~Country.Name, locations = ~Country.Code, marker = list(line = l)
       ) %>%
       colorbar(title = name) %>%

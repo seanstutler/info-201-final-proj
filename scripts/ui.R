@@ -4,7 +4,7 @@ library(plotly)
 
 
 #read file
-df <- read.csv('../processed_data/country_indicators.csv',
+df <- read.csv("../processed_data/country_indicators.csv",
                stringsAsFactors = FALSE)
 select_value <- df$Country.Name
 indicator_choice <- list(
@@ -47,7 +47,8 @@ shinyUI(navbarPage(
                               )),
               radioButtons("income group",
                           label = "Choose Income Group",
-                         choices = list("General" = "General", "High Income" = "High income",
+                         choices = list("General" = "General",
+                                  "High Income" = "High income",
                          "Upper Middle Income" = "Upper middle income",
                          "Lower Middle Income" = "Lower middle income",
                          "Low Income" = "Low income")),
@@ -56,12 +57,15 @@ shinyUI(navbarPage(
         width = 2),
              mainPanel(
                h3("Map Instruction"),
-               p("Feel free to change any of the development indicators and region to see the visualization
-                 of the data! Countries are classified by different indicator into different colors. Also,
-                 if you want to know the income group of each country, change the income group input to see
+               p("Feel free to change any of the development indicators and
+                  region to see the visualization of the data! Countries are
+                  classified by different indicator into different colors. Also,
+                  if you want to know the income group of each country,
+                  change the income group input to see
                  the highlighted map as well! Enjoy! "),
-               p("When you choose a certain income group and choose indicators, the map won't change. Here, you
-                 can just change the income group back to general and then everything will work."),
+               p("When you choose a certain income group and choose indicators,
+                  the map won't change. Here, you can just change the income
+                 group back to general and then everything will work."),
                plotlyOutput("map")
              )
           )
@@ -82,9 +86,9 @@ shinyUI(navbarPage(
                            ), width = 2),
              mainPanel(
                h3("Relation Plot Instruction"),
-               p("To see the relationship between two indicators of a certain region/country,
-                 change the x-variable and y-variable, and choose the corresponding country/
-                 region. Enjoy! "),
+               p("To see the relationship between two indicators of a
+                certain region/country, change the x-variable and y-variable,
+                and choose the corresponding country/region. Enjoy! "),
                plotOutput("scatter")
              )
            )
@@ -107,10 +111,12 @@ shinyUI(navbarPage(
       ),
       mainPanel(
         h3("Country Comparing Plot Instruction"),
-        p("To compare the growth of a certain indicator in any numbers of countries,
-          you can use this plot! Choose indicator and the countries you want to compare,
-          rember", strong("please don't put nothing in the country selection."),
-          "Feel free to hover around the data and see the beautiful legend of our plot! Enjoy~"),
+        p("To compare the growth of a certain indicator in any numbers of
+          countries, you can use this plot! Choose indicator and the countries
+          you want to compare",
+          strong("please don't put nothing in the country selection."),
+          "Feel free to hover around the data and see the beautiful
+          legend of our plot! Enjoy~"),
         plotlyOutput("compare")
       )
     )),
@@ -118,28 +124,43 @@ shinyUI(navbarPage(
            mainPanel(
              tabsetPanel(
                tabPanel("Introduction",
-                p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
-                  by Clayton Chen, Sean Yang, Jessie Yang and Velocity Yu from INFO 201 BA."),
-                  p("\n We are proud to bring you guys this great interactive program that allows users to view
-                      the trend of a certain developmemt indicators of a certain country by click. Also,
-                      the map we presented is colorized by 2016 total GDP.")),
+                p("Greetings! Welcome to the 'Analysis of Country Development
+                  by Indicators' presented by Clayton Chen, Sean Yang, Jessie
+                  Yang and Velocity Yu from INFO 201 BA."),
+                  p("\n We are proud to bring you guys this great interactive
+                    program that allows users to view
+                      the trend of a certain developmemt indicators of a certain
+                      country by click. Also,
+                      the map we presented is colorized by 2016 total GDP."),
+                p("Our data is from the website ",
+                  a(href =
+      "https://datacatalog.worldbank.org/dataset/world-development-indicators",
+      "World Bank Group"))),
                tabPanel("Insights of this project",
-                        p("To be honest, the data we chose is itself a major challenge of our team.
-                          The data takes up 210 MB and up, and the major data contains 400,000 rows."),
-                        p("Most of our time is spending on choosing data we want to process and present.
-                          After arguing for thousands of times, we decided to choose these indicators:"),
-                        p(strong("employment, imports, exports, life expectancy, literacy rate, GDP and GDP per capita.")),
-                        p("For those indicators, employment, life expectancy and literacy rate are crucial and
-                          representing social indicators of the development of the country. Import, exports, GDP and GDP per
-                          capita can somehow reflects the economic growth of the country."),
-                        p("All of our members are very keen and positive about our project. We are excited
-                          and glad to present you this visualization and analysis of the data from world bank.")),
+                        p("To be honest, the data we chose is itself a major
+                          challenge of our team. The data takes up 210 MB and
+                          up, and the major data contains 400,000 rows."),
+                        p("Most of our time is spending on choosing data we
+                          want to process and present.After arguing for
+                          thousands of times, we decided to choose these
+                          indicators:"),
+                        p(strong("employment, imports, exports,
+                    life expectancy, literacy rate, GDP and GDP per capita.")),
+                        p("For those indicators, employment, life expectancy and
+                          literacy rate are crucial and representing social
+                          indicators of the development of the country. Import,
+                          exports, GDP and GDP per capita can somehow reflect
+                          the economic growth of the country."),
+                        p("All of our members are very keen and positive about
+                          our project. We are excited and glad to present you
+                this visualization and analysis of the data from world bank.")),
                tabPanel("About Our Group",
-              p("All of our group member are freshmen from China. Clayton and Sean contribute to
-             the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
+              p("All of our group member are freshmen from China. Clayton and
+                Sean contribute to the function of manipulate maps, plots
+                  and CSS style design.
+                  Jessie Yang is our server developer. Velocity Yu is our UI
               developer and data processer."))
              )
-           )
+           ))
   )
-))
-
+)
