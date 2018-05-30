@@ -4,29 +4,23 @@ _Author: Clayton Chen, Jessie Yang, Sean Yang, Velocity Yu_
 ___
 ###What is the dataset we'll be working with?
 >
-We are working with the World Development Indicator dataset collected by the World Bank*, more specifically,. The data can be accessed at the  [link](https://datacatalog.worldbank.org/dataset/world-development-indicators). We are going to filter the data down to the whole Europe and Asia, since all of us think those countries can be a very informative reflection of all income level of the world.
-
+We are working with the World Development Indicator dataset collected by the World Bank*, more specifically,. The data can be accessed at the  [link](https://datacatalog.worldbank.org/dataset/world-development-indicators). 
 >
 *The World Bank is an international financial institution that provides loan to countries of the world for capital projects. Their goal is to reduce poverty of the world and support development. 
 
 
 ###Who is our target audience? 
 >
-The audience will be the economic students and people who are interesting in trend of developments of Asia and Europe in past few decades.
+Our target audience is economics students and most of the political science students, since the indicators we choose to reflect the development of the country is relative to their school works. However, we strongly welcome all of the interested one to explore our project!
 
 ###What does the audience want to learn from your data?
 
 >
-- GDP per capita && GDP growth 
-- What are the trends of developments of countries in Asia and Europe according to some economic indexes?
+- GDP per capita && GDP (current US$) for the whole world from 1960 - 2016
 - What is the income group that each country should be categorised in?
-- What are the differences of development trends according to different indexes between countries? 
-- What is the education expenditure for each country?
-- How does each country’s economy grow overtime?
-- The birth rate and death rate for each country
-- The coverage of social insurance programme for each country
-- The electricity power consumption for each country
-- The forest area for each country
+- What is the relationship between two indicators for a country?
+- How does each country’s economy grow overtime (GDP trend)?
+- Compare indicators growth overtime between multiple countries
 
 # Technical Description
 
@@ -50,9 +44,13 @@ We are going to reshape and filter the data down by choosing different economic 
 
 ###What libraries will be used in this project?
 >
-plotly, ggplot2, dplyr, shiny, knitr
+plotly, ggplot2, dplyr, shiny, DT
 
 ###Whar are the major challenges in the project for us?
 >
 It is hard for us to manipulate all the data since it involves two data set and one of it is extremely large. It will be hard for us to extract useful data from the whole file.
+
+This is the link to our APP: https://velocitycalvary.shinyapps.io/info-201-final-proj/ 
+
+ENJOY!
 
