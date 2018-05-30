@@ -1,6 +1,6 @@
 library(ggplot2)
 library(plotly)
-# This function takes in a type, a type2 and a country
+# This function takes in a type, a type2 and a country as parameters
 # Each type represents the indicator name 
 # returns a graph shows the corelatoin between the two indicators 
 # in the given country
