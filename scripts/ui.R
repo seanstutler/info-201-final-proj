@@ -142,18 +142,19 @@ shinyUI(navbarPage(
         conditionalPanel(
           'input.dataset === "region"',
           helpText("Sort by clicking the header of the column.")
-        ), width = 2
+        ),
+        width = 2
       ),
       mainPanel(
         tabsetPanel(
            id = 'dataset',
            tabPanel("data",
                     h3("Data Table Instruction"),
-                       p("This is a table of our processed data. You can choose from the
-                         sidebar of what data you want to include in the table. To find a
-                         data for a certain country/region, use the", strong("search: "),
-                         "function at the right."),
-                       DT::dataTableOutput("data")),
+                    p("This is a table of our processed data. You can choose from the
+                      sidebar of what data you want to include in the table. To find a
+                      data for a certain country/region, use the", strong("search: "),
+                      "function at the right."),
+                    DT::dataTableOutput("data")),
            tabPanel("region", DT::dataTableOutput("region"))
       )))),
   tabPanel("About Us",
