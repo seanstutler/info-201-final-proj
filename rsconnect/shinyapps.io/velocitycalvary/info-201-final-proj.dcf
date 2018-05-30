@@ -5,8 +5,8 @@ account: velocitycalvary
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 350971
-bundleId: 1399781
+bundleId: 1401421
 url: https://velocitycalvary.shinyapps.io/info-201-final-proj/
-when: 1527661897.41732
+when: 1527715001.9832
 asMultiple: FALSE
 asStatic: FALSE
