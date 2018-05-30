@@ -3,13 +3,12 @@ library(ggplot2)
 library(dplyr)
 
 compare_between_countries <- function(indicator, name) {
-  name <- list("China", "Italia", "Japan", "Canada")
-  name <- unlist(name, use.names = FALSE)
-  indicator <- "Exports of goods and services (current US$)"
   df <- read.csv(file = "../processed_data/country_indicators.csv", stringsAsFactors = FALSE)
   year_list <- df %>%
     select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code, -X2017, -X, -Income.Group) %>%
     colnames()
+
+  year_list <- gsub("X", "", year_list)
 
   year_list <- as.list(year_list)
   if (length(name) == 0) {
@@ -17,48 +16,34 @@ compare_between_countries <- function(indicator, name) {
   } else {
     df_trend <- df %>%
       filter(Indicator.Name == indicator) %>%
-      filter(Country.Name %in% name)
+      filter(Country.Name %in% name) %>%
+      select(-Country.Name, -Country.Code, -Indicator.Name, -Indicator.Code, -X, -X2017, -Income.Group)
 
-    # Graph title
-    #if (length(name) > 2) {
-    #  j_names_comma <- paste(name[-length(name)], collapse = ', ')
-    #  j_names <- paste0(j_names_comma, ", and ", name[length(name)])
-    #} else {
-    #  j_names <- paste(name, collapse = ' and ')
-    #}
-
-    #graph_title  <- paste("Compare between ", j_names, sep="")
     length <- length(name)
-    a <- list()
+    frame <- data.frame()
     for (i in 1:length) {
-      datalist <- list();
-      colnames <- colnames(df);
+      datalist <- list()
+      colnames <- colnames(df_trend)
       j <- 1
       for (col in colnames) {
-        if (col != "Country.Name" & col != "Country.Code" &
-            col != "Indicator.Name" & col != "Indicator.Code" &
-            col != "X" & col != "X2017" & col != "Income.Group") {
-          datalist[[j]] <- df[i, col]
+          datalist[[j]] <- df_trend[i, col]
           j = j + 1
         }
-      }
-      a[[i]] <- datalist
-    }
-    frame <- data.frame()
-    for (i in 1:length(a)) {
-      new <- do.call(rbind, Map(data.frame, Year = year_list, country = a[[i]]))
-      new$group <- i
+      new <- do.call(rbind, Map(data.frame, Year = year_list, indicator = datalist))
+      new$var <- i
       frame <- rbind(frame, new)
     }
-  }
 
-
-    ggideal_point <- ggplot(frame, aes(x = Year, y = country, group = group, col = group, fill = group)) + geom_line()
+    gg <- ggplot(data = frame, aes(x = Year, y = indicator, group = var, colour = var)) + geom_line() +
+      theme(axis.text.x = element_blank(),
+            axis.ticks.x = element_blank())
 
     # Convert ggplot object to plotly
-    gg <- plotly_build(ggideal_point)
+    gg <- plotly_build(gg) %>%
+      hide_colorbar()
     return(gg)
   }
+}
 
 
-compare_between_countries("GDP (current US$)", list("China", "Japan"))
+compare_between_countries("GDP (current US$)", list("China", "Japan", "Italy"))
