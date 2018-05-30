@@ -11,6 +11,9 @@ data <- read.csv("../processed_data/country_indicators.csv",
 data <- data %>%
   select(-X)
 
+region <- read.csv(file = "../processed_data/region.csv",
+                   stringsAsFactors = FALSE)
+
 select_value <- data$Country.Name
 
 indicator_choice <- list(
@@ -135,6 +138,10 @@ shinyUI(navbarPage(
                              names(data),
                              selected = c('Country.Name', 'Indicator.Name',
                                           'Income.Group'))
+        ),
+        conditionalPanel(
+          'input.dataset === "region"',
+          helpText("Sort by clicking the header of the column.")
         ), width = 2
       ),
       mainPanel(
@@ -146,7 +153,8 @@ shinyUI(navbarPage(
                          sidebar of what data you want to include in the table. To find a
                          data for a certain country/region, use the", strong("search: "),
                          "function at the right."),
-                       DT::dataTableOutput("myTable"))
+                       DT::dataTableOutput("data")),
+           tabPanel("region", DT::dataTableOutput("region"))
       )))),
   tabPanel("About Us",
            mainPanel(
@@ -163,7 +171,8 @@ shinyUI(navbarPage(
                 p("Our data is from the website ",
                   a(href =
       "https://datacatalog.worldbank.org/dataset/world-development-indicators",
-      "World Bank Group"))),
+      "World Bank Group"), "and here is the link to our ",
+      a(href = "https://github.com/velocityCavalry/info-201-final-proj", "repo"))),
                tabPanel("Insights of this project",
                         p("To be honest, the data we chose is itself a major
                           challenge of our team. The data takes up 210 MB and
