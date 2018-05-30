@@ -128,9 +128,8 @@ shinyUI(navbarPage(
         p("To compare the growth of a certain indicator in any numbers of
           countries, you can use this plot! Choose indicator and the countries
           you want to compare. If some of the
-                 data is 0, that means that it is not available.",
-          strong("please don't put nothing in the country selection."),
-          "Feel free to hover around the data and see the beautiful
+                 data is 0, that means that it is currently not available.
+          Feel free to hover around the data and see the beautiful
           legend of our plot! Enjoy~"),
         plotlyOutput("compare")
       )
