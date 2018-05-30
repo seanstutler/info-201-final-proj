@@ -7,7 +7,21 @@ library(plotly)
 df <- read.csv('../processed_data/country_indicators.csv',
                stringsAsFactors = FALSE)
 select_value <- df$Country.Name
-
+indicator_choice <- list(
+  "Employment" =
+    "Employment to population ratio, 15+, total (%) (national estimate)",
+  "Exports" =
+    "Exports of goods and services (current US$)",
+  "Imports" =
+    "Imports of goods and services (current US$)",
+  "Life Expectancy" =
+    "Life expectancy at birth, total (years)",
+  "Literacy" =
+    "Literacy rate, adult total (% of people ages 15 and above)",
+  "Total GDP" =
+    "GDP (current US$)",
+  "GDP Per Capita" =
+    "GDP per capita (current US$)")
 
 #construct ui
 shinyUI(navbarPage(
@@ -21,21 +35,7 @@ shinyUI(navbarPage(
              sidebarPanel(
                selectInput("type",
                          label = "Choose Indicator",
-                          choices = list(
-    "Employment" =
-      "Employment to population ratio, 15+, total (%) (national estimate)",
-                                  "Exports" =
-                                "Exports of goods and services (current US$)",
-                                "Imports" =
-                                "Imports of goods and services (current US$)",
-                              "Life Expectancy" =
-                              "Life expectancy at birth, total (years)",
-                              "Literacy" =
-                  "Literacy rate, adult total (% of people ages 15 and above)",
-                              "Total GDP" =
-                              "GDP (current US$)",
-                              "GDP Per Capita" =
-                              "GDP per capita (current US$)")),
+                         choices = indicator_choice),
                selectInput("region",
                            label = "Choose Region",
                            choices = list("World" = "world",
@@ -45,7 +45,7 @@ shinyUI(navbarPage(
                                          "North America" = "north america",
                                          "Europe" = "europe"
                               )),
-               selectInput("income group",
+              radioButtons("income group",
                           label = "Choose Income Group",
                          choices = list("General" = "General", "High Income" = "High income",
                          "Upper Middle Income" = "Upper middle income",
@@ -70,38 +70,10 @@ shinyUI(navbarPage(
              sidebarPanel(
                selectInput("type1",
                            label = "Development Indicator (x axis)",
-                           choices =  list(
-                             "Employment" =
-                               "Employment to population ratio, 15+, total (%) (national estimate)",
-                             "Exports" =
-                               "Exports of goods and services (current US$)",
-                             "Imports" =
-                               "Imports of goods and services (current US$)",
-                             "Life Expectancy" =
-                               "Life expectancy at birth, total (years)",
-                             "Literacy" =
-                               "Literacy rate, adult total (% of people ages 15 and above)",
-                             "Total GDP" =
-                               "GDP (current US$)",
-                             "GDP Per Capita" =
-                               "GDP per capita (current US$)")),
+                           choices = indicator_choice),
                selectInput("type2",
                            label = "Development Indicator (y axis)",
-                           choices =  list(
-                             "Employment" =
-                               "Employment to population ratio, 15+, total (%) (national estimate)",
-                             "Exports" =
-                               "Exports of goods and services (current US$)",
-                             "Imports" =
-                               "Imports of goods and services (current US$)",
-                             "Life Expectancy" =
-                               "Life expectancy at birth, total (years)",
-                             "Literacy" =
-                               "Literacy rate, adult total (% of people ages 15 and above)",
-                             "Total GDP" =
-                               "GDP (current US$)",
-                             "GDP Per Capita" =
-                               "GDP per capita (current US$)")),
+                           choices = indicator_choice),
                selectInput("country2", label = "Choose Country ",
                            choices = select_value,
                            selected = 1
@@ -116,28 +88,14 @@ shinyUI(navbarPage(
            )
   ),
   tabPanel(
-    "Country relation",
-    titlePanel("Magic Plot To Compare Two Countries Development"),
+    "Country Relation Plot",
+    titlePanel("Magic Plot To Compare Multiple Countries Development"),
     sidebarLayout(
       sidebarPanel(
         # choose y
         selectInput(
           "indicator", "Choose the Indicator",
-          choices = list(
-            "Employment" =
-              "Employment to population ratio, 15+, total (%) (national estimate)",
-            "Exports" =
-              "Exports of goods and services (current US$)",
-            "Imports" =
-              "Imports of goods and services (current US$)",
-            "Life Expectancy" =
-              "Life expectancy at birth, total (years)",
-            "Literacy" =
-              "Literacy rate, adult total (% of people ages 15 and above)",
-            "Total GDP" =
-              "GDP (current US$)",
-            "GDP Per Capita" =
-              "GDP per capita (current US$)")),
+          choices = indicator_choice),
         # chooose country
         selectInput(
           "name", label = "Choose the Country",
@@ -159,17 +117,17 @@ shinyUI(navbarPage(
              tabsetPanel(
                tabPanel("Introduction",
                 p("Greetings! Welcome to the 'Analysis of Country Development by Indicators' presented
-             by Clayton Chen, Sean Yang, Jessie Yang and Velocity Yu from INFO 201 BA. We are
-                                          proud to bring you guys this great interactive program that allows users to view
-                                          the trend of a certain developmemt indicators of a certain country by click. Also,
-                                          the map we presented is colorized by 2016 total GDP.")),
+                  by Clayton Chen, Sean Yang, Jessie Yang and Velocity Yu from INFO 201 BA."),
+                  p("\n We are proud to bring you guys this great interactive program that allows users to view
+                      the trend of a certain developmemt indicators of a certain country by click. Also,
+                      the map we presented is colorized by 2016 total GDP.")),
                tabPanel("Insights of this project",
-                        p("To be honest, the data we chose is itself a huge challenge of our team.
-                          This data. ")),
+                        p("To be honest, the data we chose is itself a major challenge of our team.
+                          The data takes up 208 MB and up. ")),
                tabPanel("About Our Group",
               p("All of our group member are freshmen and from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
-                                             developer and data processer."))
+              developer and data processer."))
              )
            )
   )
