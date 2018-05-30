@@ -55,7 +55,7 @@ shinyUI(navbarPage(
              is not available :P Sorry for the inconvenience~"
              ),
              mainPanel(
-               h3("Using "),
+               h3("Map Instruction"),
                p("Feel free to change any of the development indicators and region to see the visualization
                  of the data! Countries are classified by different indicator into different colors. Also,
                  if you want to know the income group of each country, change the income group input to see
@@ -107,7 +107,7 @@ shinyUI(navbarPage(
                            selected = 1
                            )),
              mainPanel(
-               h3("How to use the plot"),
+               h3("Relation Plot Instruction"),
                p("To see the relationship between two indicators of a certain region/country,
                  change the x-variable and y-variable, and choose the corresponding country/
                  region. Enjoy! "),
@@ -140,13 +140,17 @@ shinyUI(navbarPage(
               "GDP per capita (current US$)")),
         # chooose country
         selectInput(
-          "name", "Choose the Country",
+          "name", label = "Choose the Country",
           choices = select_value,
-          multiple = TRUE)
+          multiple = TRUE,
+          selected = select_value[[1]])
       ),
       mainPanel(
-        h3("how to use this plot"),
-        p("To compare "),
+        h3("Country Comparing Plot Instruction"),
+        p("To compare the growth of a certain indicator in any numbers of countries,
+          you can use this plot! Choose indicator and the countries you want to compare,
+          rember", strong("please don't put nothing in the country selection."),
+          "Feel free to hover around the data and see the beautiful legend of our plot! Enjoy~"),
         plotlyOutput("compare")
       )
     )),
@@ -160,7 +164,8 @@ shinyUI(navbarPage(
                                           the trend of a certain developmemt indicators of a certain country by click. Also,
                                           the map we presented is colorized by 2016 total GDP.")),
                tabPanel("Insights of this project",
-                        p("xx some words' of ...")),
+                        p("To be honest, the data we chose is itself a huge challenge of our team.
+                          This data. ")),
                tabPanel("About Our Group",
               p("All of our group member are freshmen and from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
