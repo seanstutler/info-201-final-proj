@@ -7,7 +7,7 @@ choose_region <- function(data, region, selector, indicator) {
     data[data$Income.Group != selector, ]$Income.Group <- 0
     data[data$Income.Group == selector, ]$Income.Group <- 1
   }
-
+  name <- indicator
   l <- list(color = toRGB("grey"), width = 0.5)
 
   g <- list(
@@ -37,6 +37,9 @@ choose_region <- function(data, region, selector, indicator) {
       frame$X2016 <- frame$X2016 / 1000000000
     } else {
       frame <- data[data$Indicator.Name == indicator, ]
+      if (indicator == "Employment to population ratio, 15+, total (%) (national estimate)") {
+        name <- "Employment/Population"
+      }
     }
 
     p <- plot_geo(frame) %>%
@@ -44,7 +47,7 @@ choose_region <- function(data, region, selector, indicator) {
         z = ~X2015, color = ~X2015, colors = 'Greens',
         text = ~Country.Name, locations = ~Country.Code, marker = list(line = l)
       ) %>%
-      colorbar(title = indicator) %>%
+      colorbar(title = name) %>%
       layout(
         title = "World Map",
         geo = g
