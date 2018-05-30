@@ -12,7 +12,8 @@ compare_between_countries <- function(indicator, name) {
 
   year_list <- as.list(year_list)
   if (length(name) == 0) {
-    return("Please select at least one country")
+    graph <- geom_blank(mapping = NULL, data = NULL)
+    return(graph)
   } else {
     df_trend <- df %>%
       filter(Indicator.Name == indicator) %>%
@@ -34,9 +35,15 @@ compare_between_countries <- function(indicator, name) {
       frame <- rbind(frame, new)
     }
 
+    title <- paste0("Year VS ", indicator)
+
     gg <- ggplot(data = frame, aes(x = Year, y = value, group = Country, colour = Country)) + geom_line() +
       theme(axis.text.x = element_blank(),
-            axis.ticks.x = element_blank())
+            axis.ticks.x = element_blank()) +
+      ggtitle(title) +
+      xlab("Year") +
+      ylab(indicator)
+
 
     # Convert ggplot object to plotly
     gg <- plotly_build(gg)
