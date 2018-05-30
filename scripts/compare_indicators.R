@@ -1,5 +1,9 @@
 library(dplyr)
 library(plotly)
+# This function takes in a type, a type2 and a country
+# Each type represents the indicator name 
+# returns a graph shows the corelatoin between the two indicators 
+# in the given country
 compare_indicators <- function(type, type2, country) {
     data <- read.csv(file = "../processed_data/country_indicators.csv",
                      stringsAsFactors = FALSE)
@@ -18,7 +22,8 @@ compare_indicators <- function(type, type2, country) {
         labs(x = type, y = type2)
     return(graph)
 }
-
+# helper function
+# return data in a list
 return_list <- function(data) {
     datalist <- list();
     colnames <- colnames(data);
