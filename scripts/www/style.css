@@ -26,9 +26,7 @@ h3 {
 }
 
 .tab-content {
-    opacity: 0.9;
-    background-color: white;
-    height: 900px;
+    background-color: transparent;
 }
 
 #tab-9121-1 {
@@ -88,7 +86,6 @@ p {
 
 .navbar-nav li:hover {
     border: 2px solid antiquewhite;
-    opacity: 1.0;
 }
 
 li {
