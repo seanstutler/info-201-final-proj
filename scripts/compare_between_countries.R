@@ -12,7 +12,7 @@ compare_between_countries <- function(indicator, name) {
 
   year_list <- as.list(year_list)
   if (length(name) == 0) {
-    print("Please select at least one country")
+    return("Please select at least one country")
   } else {
     df_trend <- df %>%
       filter(Indicator.Name == indicator) %>%
@@ -29,18 +29,17 @@ compare_between_countries <- function(indicator, name) {
           datalist[[j]] <- df_trend[i, col]
           j = j + 1
         }
-      new <- do.call(rbind, Map(data.frame, Year = year_list, indicator = datalist))
-      new$var <- i
+      new <- do.call(rbind, Map(data.frame, Year = year_list, value = datalist))
+      new$Country <- name[[i]]
       frame <- rbind(frame, new)
     }
 
-    gg <- ggplot(data = frame, aes(x = Year, y = indicator, group = var, colour = var)) + geom_line() +
+    gg <- ggplot(data = frame, aes(x = Year, y = value, group = Country, colour = Country)) + geom_line() +
       theme(axis.text.x = element_blank(),
             axis.ticks.x = element_blank())
 
     # Convert ggplot object to plotly
-    gg <- plotly_build(gg) %>%
-      hide_colorbar()
+    gg <- plotly_build(gg)
     return(gg)
   }
 }
