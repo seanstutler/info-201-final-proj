@@ -1,4 +1,4 @@
-library(dplyr)
+library(ggplot2)
 library(plotly)
 # This function takes in a type, a type2 and a country
 # Each type represents the indicator name 

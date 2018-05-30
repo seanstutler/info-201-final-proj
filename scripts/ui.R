@@ -75,10 +75,12 @@ shinyUI(navbarPage(
                p("When you choose a certain income group and choose indicators,
                   the map won't change. Here, you can just change the income
                  group back to general and then everything will work."),
+               #plot map
                plotlyOutput("map")
              )
           )
   ),
+  #tab 2
   tabPanel("Indicators Relation Plots",
            titlePanel("Magic Plots of relations between certain indicators"),
            sidebarLayout(
@@ -98,10 +100,12 @@ shinyUI(navbarPage(
                p("To see the relationship between two indicators of a
                 certain region/country, change the x-variable and y-variable,
                 and choose the corresponding country/region. Enjoy! "),
+               #plot the relation plot
                plotOutput("scatter")
              )
            )
   ),
+  #tab 3
   tabPanel(
     "Country Relation Plot",
     titlePanel("Magic Plot To Compare Multiple Countries Development"),
@@ -129,6 +133,7 @@ shinyUI(navbarPage(
         plotlyOutput("compare")
       )
     )),
+  #tab 4
   tabPanel("Data Table",
     sidebarLayout(
       sidebarPanel(
@@ -154,9 +159,13 @@ shinyUI(navbarPage(
                       sidebar of what data you want to include in the table. To find a
                       data for a certain country/region, use the", strong("search: "),
                       "function at the right."),
+                    #display table of data
                     DT::dataTableOutput("data")),
-           tabPanel("region", DT::dataTableOutput("region"))
+           tabPanel("region",
+                    #display table of region
+                    DT::dataTableOutput("region"))
       )))),
+  #tab 5
   tabPanel("About Us",
            mainPanel(
              tabsetPanel(
@@ -169,11 +178,16 @@ shinyUI(navbarPage(
                       the trend of a certain developmemt indicators of a certain
                       country by click. Also,
                       the map we presented is colorized by 2016 total GDP."),
+                p("Our target audience is economics students and most of the
+                  political science students, since the indicators we choose
+                  to reflect the development of the country is relative to
+                  their school works. However, we strongly welcome all of
+                  the interested one to explore our project!"),
                 p("Our data is from the website ",
                   a(href =
       "https://datacatalog.worldbank.org/dataset/world-development-indicators",
       "World Bank Group"), "and here is the link to our ",
-      a(href = "https://github.com/velocityCavalry/info-201-final-proj", "repo"))),
+  a(href = "https://github.com/velocityCavalry/info-201-final-proj", "repo"))),
                tabPanel("Insights of this project",
                         p("To be honest, the data we chose is itself a major
                           challenge of our team. The data takes up 210 MB and
@@ -197,7 +211,8 @@ shinyUI(navbarPage(
                 Sean contribute to the function of manipulate maps, plots
                   and CSS style design.
                   Jessie Yang is our server developer. Velocity Yu is our UI
-              developer and data processer."))
+              developer and data processer. All of our member is very
+                contructive and innovative."))
              )
            ))
   )

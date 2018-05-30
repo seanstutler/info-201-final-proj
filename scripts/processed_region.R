@@ -27,6 +27,7 @@ incomegroup_data <- country_data %>%
   filter(Income.Group != "") %>%
   select(Country.Code, Short.Name, Income.Group)
 
+<<<<<<< HEAD
 # write data
 write.csv(region_data,
   file = "../processed_data/region.csv",
@@ -36,3 +37,10 @@ write.csv(incomegroup_data,
   file = "../processed_data/income_group.csv",
   row.names = FALSE
 )
+=======
+#write data into csv files
+write.csv(region_data, file = "../processed_data/region.csv",
+          row.names = FALSE)
+write.csv(incomegroup_data, file = "../processed_data/income_group.csv",
+          row.names = FALSE)
+>>>>>>> 870b1fd8cafb6913855a3f654b8ed08786d09485
