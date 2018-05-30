@@ -99,7 +99,8 @@ shinyUI(navbarPage(
                h3("Relation Plot Instruction"),
                p("To see the relationship between two indicators of a
                 certain region/country, change the x-variable and y-variable,
-                and choose the corresponding country/region. Enjoy! "),
+                and choose the corresponding country/region. If some of the
+                 data is 0, that means that it is not available.Enjoy! "),
                #plot the relation plot
                plotOutput("scatter")
              )
@@ -126,7 +127,8 @@ shinyUI(navbarPage(
         h3("Country Comparing Plot Instruction"),
         p("To compare the growth of a certain indicator in any numbers of
           countries, you can use this plot! Choose indicator and the countries
-          you want to compare",
+          you want to compare. If some of the
+                 data is 0, that means that it is not available.",
           strong("please don't put nothing in the country selection."),
           "Feel free to hover around the data and see the beautiful
           legend of our plot! Enjoy~"),
