@@ -6,7 +6,6 @@ library(plotly)
 #read file
 df <- read.csv('../processed_data/country_indicators.csv',
                stringsAsFactors = FALSE)
-
 select_value <- df$Country.Name
 
 
