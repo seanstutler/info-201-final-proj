@@ -52,8 +52,8 @@ shinyUI(navbarPage(
                          "Lower Middle Income" = "Lower middle income",
                          "Low Income" = "Low income")),
         "If the hovered data is 0, it means that that data currently
-             is not available :P Sorry for the inconvenience~"
-             ),
+             is not available :P Sorry for the inconvenience~",
+        width = 2),
              mainPanel(
                h3("Map Instruction"),
                p("Feel free to change any of the development indicators and region to see the visualization
@@ -77,7 +77,7 @@ shinyUI(navbarPage(
                selectInput("country2", label = "Choose Country ",
                            choices = select_value,
                            selected = 1
-                           )),
+                           ), width = 2),
              mainPanel(
                h3("Relation Plot Instruction"),
                p("To see the relationship between two indicators of a certain region/country,
@@ -101,7 +101,7 @@ shinyUI(navbarPage(
           "name", label = "Choose the Country",
           choices = select_value,
           multiple = TRUE,
-          selected = select_value[[1]])
+          selected = select_value[[1]]), width = 2
       ),
       mainPanel(
         h3("Country Comparing Plot Instruction"),
@@ -123,7 +123,13 @@ shinyUI(navbarPage(
                       the map we presented is colorized by 2016 total GDP.")),
                tabPanel("Insights of this project",
                         p("To be honest, the data we chose is itself a major challenge of our team.
-                          The data takes up 208 MB and up. ")),
+                          The data takes up 210 MB and up, and the major data contains 400,000 rows."),
+                        p("Most of our time is spending on choosing data we want to process and present.
+                          After arguing for thousands of times, we decided to choose these indicators:"),
+                        p(strong("employment, imports, exports, life expectancy, literacy rate, GDP and GDP per capita.")),
+                        p("For those indicators, employment, life expectancy and literacy rate are crucial and
+                          representing indicators of the development of the country. Import, exports, GDP and GDP per
+                          capita can somehow reflects the economic growth and political growth of the country. ")),
                tabPanel("About Our Group",
               p("All of our group member are freshmen and from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
