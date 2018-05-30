@@ -60,6 +60,8 @@ shinyUI(navbarPage(
                  of the data! Countries are classified by different indicator into different colors. Also,
                  if you want to know the income group of each country, change the income group input to see
                  the highlighted map as well! Enjoy! "),
+               p("When you choose a certain income group and choose indicators, the map won't change. Here, you
+                 can just change the income group back to general and then everything will work."),
                plotlyOutput("map")
              )
           )
@@ -112,7 +114,7 @@ shinyUI(navbarPage(
         plotlyOutput("compare")
       )
     )),
-  tabPanel("About us",
+  tabPanel("About Us",
            mainPanel(
              tabsetPanel(
                tabPanel("Introduction",
@@ -128,10 +130,12 @@ shinyUI(navbarPage(
                           After arguing for thousands of times, we decided to choose these indicators:"),
                         p(strong("employment, imports, exports, life expectancy, literacy rate, GDP and GDP per capita.")),
                         p("For those indicators, employment, life expectancy and literacy rate are crucial and
-                          representing indicators of the development of the country. Import, exports, GDP and GDP per
-                          capita can somehow reflects the economic growth and political growth of the country. ")),
+                          representing social indicators of the development of the country. Import, exports, GDP and GDP per
+                          capita can somehow reflects the economic growth of the country."),
+                        p("All of our members are very keen and positive about our project. We are excited
+                          and glad to present you this visualization and analysis of the data from world bank.")),
                tabPanel("About Our Group",
-              p("All of our group member are freshmen and from China. Clayton and Sean contribute to
+              p("All of our group member are freshmen from China. Clayton and Sean contribute to
              the function of manipulate maps and plots. Jessie Yang is our server developer. Velocity Yu is our UI
               developer and data processer."))
              )
